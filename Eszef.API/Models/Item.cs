@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,9 +9,17 @@ namespace Eszef.API.Models
 {
     public class Item
     {
-        public int Id { get; set; }
-        public String ItemName { get; set; }
-        public int IdRoom { get; set; }
+        [BsonId]
+        public string Id { get; protected set; }
+        public string ItemName { get; protected set; }
+        public int IdRoom { get; protected set; }
+
+        public Item(string itemName, int idRoom)
+        { 
+            Id = Guid.NewGuid().ToString().Substring(0, 23);
+            ItemName = itemName;
+            IdRoom = idRoom;
+        }
 
     }
 }

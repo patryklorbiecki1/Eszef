@@ -7,8 +7,7 @@ namespace Eszef.API.Models
 {
     public interface ISoldierRepository
     {
-        IEnumerable<Soldier> GetAllSoldiers { get; }
-        Soldier GetSoldierById(int id);
-        IEnumerable<Soldier> GetSoldierByLastName(string lastname);
+        Task<IEnumerable<Soldier>> GetAllSoldiers();
+        Task<IEnumerable<Soldier>> GetSoldierByLastName(string lastname);
     }
 }

@@ -19,15 +19,12 @@ namespace Eszef.API.Controllers
             _soldierRepository = soldierRepository;
         }
 
-        public IEnumerable<Soldier> GetAllSoldiers()
-            => _soldierRepository.GetAllSoldiers;
+        public async Task<IEnumerable<Soldier>> GetAllSoldiers()
+            => await _soldierRepository.GetAllSoldiers();
 
         [HttpGet("{lastname}")]
-        public IEnumerable<Soldier> GetSoldierByLastName(string lastname)
-        => _soldierRepository.GetSoldierByLastName(lastname);
-
-        [HttpGet("id/{id}")]
-        public Soldier GetSoldierById(int id)
-       => _soldierRepository.GetSoldierById(id);
+        public async Task<IEnumerable<Soldier>> GetSoldierByLastName(string lastname)
+        => await _soldierRepository.GetSoldierByLastName(lastname);
+      
     }
 }

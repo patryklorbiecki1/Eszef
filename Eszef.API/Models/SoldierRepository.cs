@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Eszef.API.Database;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,27 +9,18 @@ namespace Eszef.API.Models
 {
     public class SoldierRepository : ISoldierRepository
     {
-        private readonly AppDbContext _appDbContext;
-        public SoldierRepository(AppDbContext appDbContext)
+        private readonly IMongoCollection<Soldier> _appDbContext;
+        public SoldierRepository(IDatabaseSettings settings)
         {
-            _appDbContext = appDbContext;
+            var client = new MongoClient(settings.ConnectionString);
+            var database = client.GetDatabase(settings.Database);
+            _appDbContext = database.GetCollection<Soldier>("soldier");
         }
-        public IEnumerable<Soldier> GetAllSoldiers
-        {
-            get
-            {
-                return _appDbContext.Soldier;
-            }
-        }
+        public async Task<IEnumerable<Soldier>> GetAllSoldiers()
+            => await Task.FromResult(_appDbContext.Find(soldier => true).ToList());
+        
+        public async Task<IEnumerable<Soldier>> GetSoldierByLastName(string lastname)
+            => await Task.FromResult(_appDbContext.Find<Soldier>(x => x.LastName == lastname).ToList());
 
-        public Soldier GetSoldierById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Soldier> GetSoldierByLastName(string lastname)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

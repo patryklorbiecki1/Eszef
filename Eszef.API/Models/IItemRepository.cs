@@ -7,8 +7,10 @@ namespace Eszef.API.Models
 {
     public interface IItemRepository
     {
-        IEnumerable<Item> GetAllItems();
-        IEnumerable<Item> GetItemsByRoom(int idRoom);
-        Item GetItemById(int id);
+        Task<IEnumerable<Item>> GetAllItems();
+        Task<IEnumerable<Item>> GetItemsByRoom(int idRoom);
+        Task<Item> GetItemById(string id);
+        Task Create(string itemName, int idRoom);
+        
     }
 }

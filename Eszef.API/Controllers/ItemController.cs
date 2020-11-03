@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Eszef.API.Commands.Items;
 using Eszef.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,18 +20,24 @@ namespace Eszef.API.Controllers
         {
             _itemRepository = itemRepository;
         }
-        // GET: /Item
+        // GET: /item
         [HttpGet]
-        public IEnumerable<Item> Get()
-        {
-            return _itemRepository.GetAllItems();
-        }
-
-        // GET: /Item/5
+        public async Task<IEnumerable<Item>> Get()
+            => await _itemRepository.GetAllItems();
+       
+        
+        // GET: /item/5
         [HttpGet("{id}", Name = "Get")]
-        public Item Get(int id)
+        public async Task<Item> GetById(string id)
+            => await _itemRepository.GetItemById(id);
+       
+
+        [HttpPost("")]
+        public async Task<IActionResult> AddItem([FromBody] AddItem item)
         {
-            return _itemRepository.GetItemById(id);
+            await _itemRepository.Create(item.ItemName,item.IdRoom);
+            return Accepted();
         }
+   
     }
 }
