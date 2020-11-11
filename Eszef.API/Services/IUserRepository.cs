@@ -7,8 +7,8 @@ namespace Eszef.API.Models
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User>> GetAllUsers();
-        Task<User> GetUserByEmail(string email);
-        Task Register(string email, string password);    
+        Task<User> GetUser(string email);
+        Task Register(string email, string password);
+        Task<User> Login(string email, string password);
     }
 }

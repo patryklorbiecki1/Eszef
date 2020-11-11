@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Eszef.API.Commands.Users;
+using Eszef.API.Models;
+using Eszef.API.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+
+namespace Eszef.API.Controllers
+{
+    [Route("[controller]")]
+    [ApiController]
+    public class LoginController : ControllerBase
+    {
+        private readonly IUserRepository _userRepository;
+        private readonly IJwtHandler _jwtHandler;
+        
+        public LoginController(IUserRepository userRepository, IJwtHandler jwtHandler)
+        {
+            _userRepository = userRepository;
+            _jwtHandler = jwtHandler;
+        }
+        
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] CreateUser createUser)
+        {
+            IActionResult response = Unauthorized();
+            var user = await _userRepository.Login(createUser.Email, createUser.Password);
+            if(user != null)
+            {
+                var tokenString = await _jwtHandler.GenerateToken(user);
+                response = Ok(new { token = tokenString });
+            }
+            return response;
+        }
+      
+    }
+}

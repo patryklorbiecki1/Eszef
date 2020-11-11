@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Eszef.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eszef.API.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class SoldierController : ControllerBase

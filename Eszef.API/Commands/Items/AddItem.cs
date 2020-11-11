@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Eszef.API.Commands.Items
 {
-    public class AddItem
+    public class AddItem : ICommand
     {
         public string ItemName { get; set; }
         public int IdRoom { get; set; }

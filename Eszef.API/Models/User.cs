@@ -13,21 +13,18 @@ namespace Eszef.API.Models
         [BsonId]
         public string IdUser { get; protected set; }
         public string Email { get; protected set; }
-        public string Name { get; protected set; }
+        public string UserName { get; protected set; }
         public string LastName { get; protected set; }
         public int Company { get; protected set; }
         public string Password { get; protected set; }
-        public User(string email,string name,string lastname,int company,string password)
-        {
+        public string Salt { get; protected set; }
 
-            IdUser = Guid.NewGuid().ToString().Substring(0,23);
-            Email = email;
-            Name = name;
-            LastName = lastname;
-            Company = company;
+        public User(string email, string password)
+        {
+            IdUser = Guid.NewGuid().ToString().Substring(0, 23);
+            Email = email;     
             Password = password;
         }
-
     }
 
 
