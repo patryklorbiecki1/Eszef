@@ -11,6 +11,6 @@ namespace Eszef.API.Models
         Task<IEnumerable<Item>> GetItemsByRoom(int idRoom);
         Task<Item> GetItemById(string id);
         Task Create(string itemName, int idRoom);
-        
+        Task DeleteById(string id);
     }
 }

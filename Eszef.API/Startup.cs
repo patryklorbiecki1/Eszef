@@ -33,6 +33,7 @@ namespace Eszef.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+	    services.AddCors();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -49,7 +50,7 @@ namespace Eszef.API
                 });
             services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
             services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
-            services.AddCors();
+            
             services.AddScoped<ISoldierRepository, SoldierRepository>();
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
@@ -65,7 +66,11 @@ namespace Eszef.API
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod());
+             app.UseCors(x => x
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .SetIsOriginAllowed(origin => true)
+               .AllowCredentials()); 
             app.UseHttpsRedirection();
 
             app.UseRouting();

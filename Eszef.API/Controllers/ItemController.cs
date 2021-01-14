@@ -42,7 +42,13 @@ namespace Eszef.API.Controllers
             return Accepted();
         }
 
-        
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(string id)
+        {
+            await _itemRepository.DeleteById(id);
+            return Ok();
+        }
+   
    
     }
 }
