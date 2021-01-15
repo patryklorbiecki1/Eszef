@@ -16,11 +16,24 @@ namespace Eszef.API.Models
             var database = client.GetDatabase(settings.Database);
             _appDbContext = database.GetCollection<Soldier>("soldier");
         }
-        public async Task<IEnumerable<Soldier>> GetAllSoldiers()
+
+        public Task Create(Soldier soldier)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task DeleteById(string id)
+            => await Task.FromResult(_appDbContext.DeleteOne(soldier => soldier.IdSoldier == id));
+
+        public async Task<IEnumerable<Soldier>> GetAll()
             => await Task.FromResult(_appDbContext.Find(soldier => true).ToList());
         
-        public async Task<IEnumerable<Soldier>> GetSoldierByLastName(string lastname)
+        public async Task<IEnumerable<Soldier>> GetSoldier(string lastname)
             => await Task.FromResult(_appDbContext.Find<Soldier>(x => x.LastName == lastname).ToList());
 
+        public Task Update(Soldier soldier)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

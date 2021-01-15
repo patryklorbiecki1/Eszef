@@ -51,9 +51,9 @@ namespace Eszef.API
             services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
             services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
             
-            services.AddScoped<ISoldierRepository, SoldierRepository>();
-            services.AddScoped<IItemRepository, ItemRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ISoldierService, SoldierService>();
+            services.AddScoped<IItemService, ItemService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IJwtHandler, JwtHandler>();
             services.AddControllers();
         }

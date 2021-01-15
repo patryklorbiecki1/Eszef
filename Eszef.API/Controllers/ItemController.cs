@@ -4,48 +4,49 @@ using System.Linq;
 using System.Threading.Tasks;
 using Eszef.API.Commands.Items;
 using Eszef.API.Models;
+using Eszef.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eszef.API.Controllers
 {
-    [Authorize]
+    
     [Route("[controller]")]
     [ApiController]
     public class ItemController : ControllerBase
     {
 
-        private readonly IItemRepository _itemRepository;
-
-        public ItemController(IItemRepository itemRepository)
+        private readonly IItemService _itemService;
+        public ItemController(IItemService itemService)
         {
-            _itemRepository = itemRepository;
+            _itemService = itemService;
         }
         // GET: /item
         [HttpGet]
         public async Task<IEnumerable<Item>> Get()
-            => await _itemRepository.GetAllItems();
+            => await _itemService.GetAllItems();
 
 
-        // GET: /item/5
+        // GET: /item/{id}
        
         [HttpGet("{id}", Name = "Get")]
         public async Task<Item> GetById(string id)
-            => await _itemRepository.GetItemById(id);
+            => await _itemService.GetItemById(id);
        
 
         [HttpPost]
         public async Task<IActionResult> AddItem([FromBody] AddItem item)
         {
-            await _itemRepository.Create(item.ItemName,item.IdRoom);
+            await _itemService.AddItem(item.ItemName,item.IdRoom);
             return Accepted();
         }
 
+        // DELETE: /item/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteById(string id)
         {
-            await _itemRepository.DeleteById(id);
+            await _itemService.DeleteItemById(id);
             return Ok();
         }
    

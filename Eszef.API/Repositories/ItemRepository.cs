@@ -29,9 +29,12 @@ namespace Eszef.API.Models
             _appDbContext.InsertOne(new Item(itemName, idRoom));
             await Task.CompletedTask;
         }
-	public async Task DeleteById(string id)
+	    public async Task DeleteById(string id) 
+            => await Task.FromResult(_appDbContext.DeleteOne(item => item.Id == id));
+        
+        public Task Upadate(Item item)
         {
-           await Task.FromResult(_appDbContext.DeleteOne(item => item.Id == id));
+            throw new NotImplementedException();
         }
     }
 }
