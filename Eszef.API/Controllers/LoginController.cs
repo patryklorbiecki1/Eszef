@@ -19,12 +19,12 @@ namespace Eszef.API.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
         private readonly IJwtHandler _jwtHandler;
         
-        public LoginController(IUserRepository userRepository, IJwtHandler jwtHandler)
+        public LoginController(IUserService userService, IJwtHandler jwtHandler)
         {
-            _userRepository = userRepository;
+            _userService = userService;
             _jwtHandler = jwtHandler;
         }
         
@@ -33,7 +33,7 @@ namespace Eszef.API.Controllers
         public async Task<IActionResult> Login([FromBody] CreateUser createUser)
         {
             IActionResult response = Unauthorized();
-            var user = await _userRepository.Login(createUser.Email, createUser.Password);
+            var user = await _userService.Login(createUser.Email, createUser.Password);
             if(user != null)
             {
                 var tokenString = await _jwtHandler.GenerateToken(user);
