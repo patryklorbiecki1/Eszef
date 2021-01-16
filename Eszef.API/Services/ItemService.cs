@@ -1,4 +1,7 @@
-﻿using Eszef.API.Models;
+﻿using AutoMapper;
+using Eszef.API.DTO;
+using Eszef.API.Models;
+using Eszef.API.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +12,12 @@ namespace Eszef.API.Services
     public class ItemService : IItemService
     {
         private readonly IItemRepository _itemRepository;
+        private readonly IMapper _mapper;
 
-        public ItemService(ItemRepository itemRepository)
+        public ItemService(IItemRepository itemRepository, IMapper mapper)
         {
             _itemRepository = itemRepository;
+            _mapper = mapper;
         }
         public async Task AddItem(string itemName,int idRoom)
         {
@@ -24,12 +29,16 @@ namespace Eszef.API.Services
             await _itemRepository.DeleteById(id);
         }
 
-        public async Task<IEnumerable<Item>> GetAllItems()
-            => await _itemRepository.GetAllItems();
-        
+        public async Task<IEnumerable<ItemDTO>> GetAllItems()
+        {
+           var items = await _itemRepository.GetAllItems();
+            return _mapper.Map<IEnumerable<Item>, IEnumerable<ItemDTO>>(items); 
+        }
 
-        public async Task<Item> GetItemById(string id)
-            => await _itemRepository.GetItemById(id);
-        
+        public async Task<ItemDTO> GetItemById(string id)
+        {
+          var item = await _itemRepository.GetItemById(id);
+            return _mapper.Map<Item, ItemDTO>(item);
+        }
     }
 }

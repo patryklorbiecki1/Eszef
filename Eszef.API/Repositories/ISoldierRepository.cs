@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Eszef.API.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Eszef.API.Models
+namespace Eszef.API.Repositories
 {
     public interface ISoldierRepository
     {

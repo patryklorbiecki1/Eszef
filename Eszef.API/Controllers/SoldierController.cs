@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Eszef.API.Commands;
+using Eszef.API.DTO;
 using Eszef.API.Models;
 using Eszef.API.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -23,13 +24,13 @@ namespace Eszef.API.Controllers
         }
 
         // GET: /soldier/
-        public async Task<IEnumerable<Soldier>> GetAllSoldiers()
+        public async Task<IEnumerable<SoldierDTO>> GetAllSoldiers()
             => await _soldierService.GetAllSoldiers();
 
 
         // GET: /soldier/{lastname}
         [HttpGet("{lastname}")]
-        public async Task<IEnumerable<Soldier>> GetSoldierByLastName(string lastname)
+        public async Task<IEnumerable<SoldierDTO>> GetSoldierByLastName(string lastname)
         => await _soldierService.GetSoldierByLastName(lastname);
       
         [HttpPost]

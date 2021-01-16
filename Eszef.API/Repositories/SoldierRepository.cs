@@ -1,11 +1,12 @@
 ﻿using Eszef.API.Database;
+using Eszef.API.Models;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Eszef.API.Models
+namespace Eszef.API.Repositories
 {
     public class SoldierRepository : ISoldierRepository
     {
