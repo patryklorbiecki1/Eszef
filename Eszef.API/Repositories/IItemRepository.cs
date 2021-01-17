@@ -9,7 +9,6 @@ namespace Eszef.API.Repositories
     public interface IItemRepository
     {
         Task<IEnumerable<Item>> GetAllItems();
-        Task<IEnumerable<Item>> GetItemsByRoom(int idRoom);
         Task<Item> GetItemById(string id);
         Task Create(string itemName, int idRoom);
         Task Upadate(Item item);

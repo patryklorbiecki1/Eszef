@@ -23,8 +23,7 @@ namespace Eszef.API.Repositories
 
         public async Task<Item> GetItemById(string id)
             => await Task.FromResult(_appDbContext.Find<Item>(item=>item.Id == id).FirstOrDefault());
-        public async Task<IEnumerable<Item>> GetItemsByRoom(int idRoom)
-            => await Task.FromResult(_appDbContext.Find<Item>(item => item.IdRoom == idRoom).ToList());
+
         public async Task Create(string itemName, int idRoom)
         {
             _appDbContext.InsertOne(new Item(itemName, idRoom));

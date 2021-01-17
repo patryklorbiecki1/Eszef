@@ -61,8 +61,8 @@ namespace Eszef.API
 
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IItemService, ItemService>();
-           
-          
+
+            services.AddScoped<IRoomService, RoomService>();
            
             services.AddScoped<IJwtHandler, JwtHandler>();
             services.AddControllers();

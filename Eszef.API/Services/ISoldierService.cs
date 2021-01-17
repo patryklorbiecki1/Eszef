@@ -14,5 +14,6 @@ namespace Eszef.API.Services
         Task CreateSoldier(Soldier soldier);
         Task DeleteById(string id);
         Task UpdateSoldier(Soldier soldier);
+        Task<IEnumerable<SoldierDTO>> GetSoldiersByRoom(int id);
     }
 }

@@ -4,8 +4,8 @@ using Eszef.API.Models;
 using Eszef.API.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Eszef.API.Services
 {
@@ -44,5 +44,14 @@ namespace Eszef.API.Services
         {
              throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<SoldierDTO>> GetSoldiersByRoom(int id)
+        {
+            var soldiers = await _soldierRepository.GetAll();
+            soldiers = soldiers.Where(x => x.IdRoom == id);
+            return _mapper.Map<IEnumerable<Soldier>, IEnumerable<SoldierDTO>>(soldiers);
+        }
+
+  
     }
 }
