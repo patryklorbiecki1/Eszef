@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Eszef.API.Controllers
 {
-    
+  
     [Route("[controller]")]
     [ApiController]
     public class ItemController : ControllerBase

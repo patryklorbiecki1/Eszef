@@ -12,7 +12,7 @@ namespace Eszef.API.Controllers
         [HttpPost]
         public ActionResult Create()
         {
-            var domain = "https://localhost:5001/checkout";
+            var domain = "http://localhost:3000/checkout";
             var options = new SessionCreateOptions
             {
                 PaymentMethodTypes = new List<string>
@@ -26,7 +26,7 @@ namespace Eszef.API.Controllers
                     PriceData = new SessionLineItemPriceDataOptions
                     {
                       UnitAmount = 2000,
-                      Currency = "usd",
+                      Currency = "pln",
                       ProductData = new SessionLineItemPriceDataProductDataOptions
                       {
                         Name = "Stubborn Attachments",

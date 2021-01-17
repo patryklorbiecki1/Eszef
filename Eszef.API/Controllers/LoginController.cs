@@ -41,6 +41,12 @@ namespace Eszef.API.Controllers
             }
             return response;
         }
-      
+        [AllowAnonymous]
+        [HttpPost("/register/")]
+        public async Task<IActionResult> Register([FromBody] CreateUser createUser)
+        {
+            await _userService.Register(createUser.Email, createUser.Password);
+            return Ok();
+        }
     }
 }

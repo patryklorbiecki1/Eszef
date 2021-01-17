@@ -17,7 +17,7 @@ namespace Eszef.API.Services
         }
         public async Task<User> Login(string email, string password)
         {
-            var user = await _userRepository.GetUser(email);
+            var user = await _userRepository.GetUser(email,password);
             if (user == null)
             {
                 throw new Exception("Invalid credentials");
@@ -27,7 +27,7 @@ namespace Eszef.API.Services
 
         public async Task Register(string email, string password)
         {
-            var user = await _userRepository.GetUser(email);
+            var user = await _userRepository.GetUser(email,password);
             if (user != null)
             {
                 throw new Exception($"User with email: {email} already exists");

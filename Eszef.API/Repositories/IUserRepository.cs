@@ -8,7 +8,7 @@ namespace Eszef.API.Repositories
 {
     public interface IUserRepository
     {
-        Task<User> GetUser(string email);
+        Task<User> GetUser(string email,string password);
         Task CreateUser(User user);
     }
 }
