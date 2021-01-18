@@ -18,11 +18,11 @@ namespace Eszef.API.Repositories
             _appDbContext = database.GetCollection<Soldier>("soldier");
         }
 
-        public Task Create(Soldier soldier)
-        {
-            throw new NotImplementedException();
+        public async Task Create(Soldier soldier)
+        { 
+            _appDbContext.InsertOne(new Soldier(soldier.Name,soldier.LastName,soldier.Rank,soldier.IdRoom));
+            await Task.CompletedTask;
         }
-
         public async Task DeleteById(string id)
             => await Task.FromResult(_appDbContext.DeleteOne(soldier => soldier.IdSoldier == id));
 
