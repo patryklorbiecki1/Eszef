@@ -1,5 +1,6 @@
 ﻿using Eszef.API.Models;
 using Eszef.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

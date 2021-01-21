@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Web.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Stripe.Checkout;
@@ -7,11 +7,11 @@ using Stripe.Checkout;
 namespace Eszef.API.Controllers
 {
     [Authorize]
-    [System.Web.Http.Route("create-checkout-session")]
+    [Route("create-checkout-session")]
     [ApiController]
     public class CheckoutApiController : Controller
     {
-        [System.Web.Http.HttpPost]
+        [HttpPost]
         public ActionResult Create()
         {
             var domain = "http://localhost:3000/checkout";
