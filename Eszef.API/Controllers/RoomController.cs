@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Eszef.API.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class RoomController : ControllerBase
