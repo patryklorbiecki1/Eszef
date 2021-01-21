@@ -50,7 +50,13 @@ namespace Eszef.API.Controllers
             await _itemService.DeleteItemById(id);
             return Ok();
         }
-   
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(string id)
+        {
+            var item = await _itemService.GetItemById(id);
+            await _itemService.Repair(item);
+            return NoContent();
+        }  
    
     }
 }

@@ -13,5 +13,6 @@ namespace Eszef.API.Services
         Task<IEnumerable<ItemDTO>> GetAllItems();
         Task DeleteItemById(string id);
         Task AddItem(string itemName,int idRoom);
+        Task Repair(ItemDTO item);
     }
 }

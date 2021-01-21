@@ -10,5 +10,6 @@ namespace Eszef.API.DTO
         public string Id { get;  set; }
         public string ItemName { get;  set; }
         public int IdRoom { get;  set; }
+        public bool IsRepaired { get; set; }
     }
 }

@@ -32,9 +32,8 @@ namespace Eszef.API.Repositories
 	    public async Task DeleteById(string id) 
             => await Task.FromResult(_appDbContext.DeleteOne(item => item.Id == id));
         
-        public Task Upadate(Item item)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task Upadate(Item item)
+          => await Task.FromResult(_appDbContext.ReplaceOne(x=>x.Id==item.Id,item));
+        
     }
 }

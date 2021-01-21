@@ -40,5 +40,12 @@ namespace Eszef.API.Services
           var item = await _itemRepository.GetItemById(id);
             return _mapper.Map<Item, ItemDTO>(item);
         }
+
+        public async Task Repair(ItemDTO item)
+        {
+            var i = await _itemRepository.GetItemById(item.Id);
+            i.Repair();
+            await _itemRepository.Upadate(i);
+        }
     }
 }
