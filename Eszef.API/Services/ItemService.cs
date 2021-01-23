@@ -47,5 +47,11 @@ namespace Eszef.API.Services
             i.Repair();
             await _itemRepository.Upadate(i);
         }
+
+        public async Task Update(ItemDTO item)
+        {
+            var i = await _itemRepository.GetItemById(item.Id);
+            await _itemRepository.Upadate(i);
+        }
     }
 }

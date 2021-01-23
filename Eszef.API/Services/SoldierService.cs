@@ -40,9 +40,12 @@ namespace Eszef.API.Services
             return _mapper.Map<IEnumerable<Soldier>, IEnumerable<SoldierDTO>>(soldiers);
         }
 
-        public async Task UpdateSoldier(Soldier soldier)
+        public async Task UpdateSoldier(string lastname,string rank,int idRoom)
         {
-             throw new NotImplementedException();
+            var s = await _soldierRepository.GetSoldier(lastname);
+            s.FirstOrDefault().IdRoom = idRoom;
+            s.FirstOrDefault().Rank = rank;
+            await _soldierRepository.Update(s.FirstOrDefault());
         }
 
         public async Task<IEnumerable<SoldierDTO>> GetSoldiersByRoom(int id)

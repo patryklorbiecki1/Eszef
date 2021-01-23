@@ -1,4 +1,5 @@
 ﻿using Eszef.API.Database;
+using Eszef.API.DTO;
 using Eszef.API.Models;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
@@ -27,7 +28,12 @@ namespace Eszef.API.Repositories
 
         public async Task<User> GetUser(string email,string password) 
             => await Task.FromResult(_appDbContext.Find<User>(user => (user.Email == email && user.Password == password)).FirstOrDefault());
+
+        public async Task<User> GetUser(string email)
+             => await Task.FromResult(_appDbContext.Find<User>(user => (user.Email == email)).FirstOrDefault());
+
+        public async Task Update(User user)
+             => await Task.FromResult(_appDbContext.ReplaceOne(x => x.Email == user.Email, user));
         
-       
     }
 }

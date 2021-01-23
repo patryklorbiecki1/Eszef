@@ -32,9 +32,8 @@ namespace Eszef.API.Repositories
         public async Task<IEnumerable<Soldier>> GetSoldier(string lastname)
             => await Task.FromResult(_appDbContext.Find<Soldier>(x => x.LastName == lastname).ToList());
 
-        public Task Update(Soldier soldier)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task Update(Soldier soldier)
+            => await Task.FromResult(_appDbContext.ReplaceOne(x => x.LastName == soldier.LastName, soldier));
+        
     }
 }

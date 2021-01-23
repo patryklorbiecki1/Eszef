@@ -15,6 +15,7 @@ namespace Eszef.API.Mappers
                 {
                 cfg.CreateMap<Item, ItemDTO>();
                 cfg.CreateMap<Soldier, SoldierDTO>();
+                cfg.CreateMap<User, UserDTO>();
                 }).CreateMapper();
     }
 }

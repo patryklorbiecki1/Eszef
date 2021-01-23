@@ -13,7 +13,7 @@ namespace Eszef.API.Services
         Task<IEnumerable<SoldierDTO>> GetSoldierByLastName(string lastname);
         Task CreateSoldier(Soldier soldier);
         Task DeleteById(string id);
-        Task UpdateSoldier(Soldier soldier);
+        Task UpdateSoldier(string lastname,string rank,int idRoom);
         Task<IEnumerable<SoldierDTO>> GetSoldiersByRoom(int id);
     }
 }

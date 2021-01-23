@@ -56,7 +56,15 @@ namespace Eszef.API.Controllers
             var item = await _itemService.GetItemById(id);
             await _itemService.Repair(item);
             return NoContent();
-        }  
-   
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(string id,int idRoom)
+        {
+            var item = await _itemService.GetItemById(id);
+            //await _itemService.Update()
+            return NoContent();
+        }
+
     }
 }

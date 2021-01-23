@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Eszef.API.Commands.Users;
+using Eszef.API.DTO;
 using Eszef.API.Models;
 using Eszef.API.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -41,12 +42,32 @@ namespace Eszef.API.Controllers
             }
             return response;
         }
+
         [AllowAnonymous]
         [HttpPost("/register/")]
         public async Task<IActionResult> Register([FromBody] CreateUser createUser)
         {
             await _userService.Register(createUser.Email, createUser.Password);
             return Ok();
+        }
+
+        [Authorize]
+        [HttpGet("user/{email}")]
+        public async Task<UserDTO> GetUser(string email)
+        {
+            return await _userService.Get(email);
+        }
+
+        [Authorize]
+        [HttpPut("user/")]
+        public async Task UpdateUser([FromBody] UserDTO user)
+        {
+            var u = await _userService.GetUser(user.Email);
+            u.Company = user.Company;
+            u.Cost = user.Cost;
+            u.LastName = user.LastName;
+            u.UserName = user.UserName;
+            await _userService.Update(u);
         }
     }
 }

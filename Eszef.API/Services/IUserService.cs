@@ -1,4 +1,5 @@
-﻿using Eszef.API.Models;
+﻿using Eszef.API.DTO;
+using Eszef.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,8 @@ namespace Eszef.API.Services
     {
         Task Register(string email, string password);
         Task<User> Login(string email, string password);
+        Task<UserDTO> Get(string email);
+        Task<User> GetUser(string email);
+        Task Update(User user);
     }
 }

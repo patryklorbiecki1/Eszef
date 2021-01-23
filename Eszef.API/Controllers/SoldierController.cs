@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Eszef.API.Commands;
+using Eszef.API.Commands.Soldiers;
 using Eszef.API.DTO;
 using Eszef.API.Models;
 using Eszef.API.Services;
@@ -33,7 +34,7 @@ namespace Eszef.API.Controllers
         [HttpGet("{lastname}")]
         public async Task<IEnumerable<SoldierDTO>> GetSoldierByLastName(string lastname)
         => await _soldierService.GetSoldierByLastName(lastname);
-      
+
         [HttpPost]
         public async Task<IActionResult> CreateSoldier([FromBody] CreateSoldier soldier)
         {
@@ -43,9 +44,17 @@ namespace Eszef.API.Controllers
 
         // DELETE: /soldier/{id}
         [HttpDelete("{id}")]
-        public async Task DeleteSoldier(string id)
+        public async Task<IActionResult> DeleteSoldier(string id)
         {
             await _soldierService.DeleteById(id);
+            return Accepted();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateSoldier([FromBody] EditSoldier soldier)
+        {
+            await _soldierService.UpdateSoldier(soldier.LastName,soldier.Rank,soldier.idRoom);
+            return Accepted();
         }
 
     }

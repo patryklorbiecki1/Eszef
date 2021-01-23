@@ -51,7 +51,7 @@ namespace Eszef.API
                     };  
                 });
             services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
-            services.AddSingleton (AutoMapperConfig.Initialize());
+            services.AddSingleton(AutoMapperConfig.Initialize());
             services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();

@@ -10,11 +10,11 @@ namespace Eszef.API.Models
     public class Soldier
     {
         [BsonId]
-        public string IdSoldier { get; protected set; }
-        public string Name { get; protected set; }
-        public string LastName { get; protected set; }
-        public string Rank { get; protected set; }
-        public int IdRoom { get; protected set; }
+        public string IdSoldier { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string Rank { get; set; }
+        public int IdRoom { get; set; }
 
         private Soldier() { }
         public Soldier(string name,string lastname,string rank,int idroom)

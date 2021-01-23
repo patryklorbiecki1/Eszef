@@ -14,5 +14,6 @@ namespace Eszef.API.Services
         Task DeleteItemById(string id);
         Task AddItem(string itemName,int idRoom);
         Task Repair(ItemDTO item);
+        Task Update(ItemDTO item);
     }
 }
