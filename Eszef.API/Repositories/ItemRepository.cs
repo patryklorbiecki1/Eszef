@@ -32,7 +32,7 @@ namespace Eszef.API.Repositories
 	    public async Task DeleteById(string id) 
             => await Task.FromResult(_appDbContext.DeleteOne(item => item.Id == id));
         
-        public async Task Upadate(Item item)
+        public async Task Update(Item item)
           => await Task.FromResult(_appDbContext.ReplaceOne(x=>x.Id==item.Id,item));
         
     }

@@ -45,13 +45,14 @@ namespace Eszef.API.Services
         {
             var i = await _itemRepository.GetItemById(item.Id);
             i.Repair();
-            await _itemRepository.Upadate(i);
+            await _itemRepository.Update(i);
         }
 
-        public async Task Update(ItemDTO item)
+        public async Task Update(string id,int idRoom)
         {
-            var i = await _itemRepository.GetItemById(item.Id);
-            await _itemRepository.Upadate(i);
+            var i = await _itemRepository.GetItemById(id);
+            i.IdRoom = idRoom;
+            await _itemRepository.Update(i);
         }
     }
 }

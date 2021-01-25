@@ -11,7 +11,7 @@ namespace Eszef.API.Repositories
         Task<IEnumerable<Item>> GetAllItems();
         Task<Item> GetItemById(string id);
         Task Create(string itemName, int idRoom);
-        Task Upadate(Item item);
+        Task Update(Item item);
         Task DeleteById(string id);
     }
 }
