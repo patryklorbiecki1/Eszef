@@ -13,6 +13,6 @@ namespace Eszef.API.Services
         Task<User> Login(string email, string password);
         Task<UserDTO> Get(string email);
         Task<User> GetUser(string email);
-        Task Update(User user);
+        Task Update(UserDTO user);
     }
 }

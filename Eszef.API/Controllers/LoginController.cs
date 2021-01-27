@@ -62,12 +62,8 @@ namespace Eszef.API.Controllers
         [HttpPut("user/")]
         public async Task UpdateUser([FromBody] UserDTO user)
         {
-            var u = await _userService.GetUser(user.Email);
-            u.Company = user.Company;
-            u.Cost = user.Cost;
-            u.LastName = user.LastName;
-            u.UserName = user.UserName;
-            await _userService.Update(u);
+            
+            await _userService.Update(user);
         }
     }
 }

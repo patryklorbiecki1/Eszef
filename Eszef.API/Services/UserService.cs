@@ -46,14 +46,19 @@ namespace Eszef.API.Services
             {
                 throw new Exception($"User with email: {email} already exists");
             }
-            // hash, salt ...
+            
             await _userRepository.CreateUser(new User(email, password));
 
         }
 
-        public async Task Update(User user)
+        public async Task Update(UserDTO user)
         {
-            await _userRepository.Update(user);
+            var u = await GetUser(user.Email);
+            u.Company = user.Company;
+            u.Cost = user.Cost;
+            u.LastName = user.LastName;
+            u.UserName = user.UserName;
+            await _userRepository.Update(u);
         }
     }
 }
